@@ -1,6 +1,7 @@
 import requests
 phone = '89992223456'
 
+
 def pizzalarenzo(phone):
     headers = {
         'name':'%D0%92%D0%B0%D1%81%D0%B8%D0%BB%D0%B8%D0%B9',
@@ -34,7 +35,26 @@ def dostaevsky():
     response_dostaevsky = requests.post(url='https://msk.dostaevsky.ru/ajax/feedback/back_call.php', headers=headers)
     print(response_dostaevsky)
 
+def pizzasushiwok(phone):
+    headers = {
+        'mod_name':'call_me',
+        'task':'request_call',
+        'name':'%D0%92%D0%B0%D1%81%D0%B8%D0%BB%D0%B8%D0%B9',
+        'phone': phone
+    }
+    response_pizzasushiwok = requests.post(url='https://pizzasushiwok.ru/', headers=headers)
+    print(response_pizzasushiwok)
+
+def ipizza():
+    headers = {
+        'name':'%D0%92%D0%B0%D1%81%D0%B8%D0%BB%D0%B8%D0%B9',
+        'phone': '%2B7+(999)+234-56-78'
+    }
+    response_ipizza = requests.post(url='https://ipizza.ru/xml/api/callback/', headers=headers)
+    print(response_ipizza)
 # pizzalarenzo(phone)
 # tarelochka(phone)
 # pizzapan(phone)
-dostaevsky()
+# dostaevsky()
+# pizzasushiwok(phone)
+ipizza()
