@@ -9,6 +9,7 @@ def pizzalarenzo(phone):
         'time':'%D0%91%D0%BB%D0%B8%D0%B6%D0%B0%D0%B9%D1%88%D0%B5%D0%B5+%D0%B2%D1%80%D0%B5%D0%BC%D1%8F'
     }
     response_pizzalarenzo = requests.post(url='https://pizzalarenzo.ru/api/callback.php', headers=headers)
+    print(response_pizzalarenzo)
 
 def tarelochka(phone):
     headers = {
@@ -18,6 +19,7 @@ def tarelochka(phone):
 
     }
     response_tarelochka = requests.post(url='https://xn--80achdsmuvm0h.xn--p1ai/send/send_1.php', headers=headers)
+    print(response_tarelochka)
 
 def pizzapan(phone):
     headers = {
@@ -28,6 +30,7 @@ def pizzapan(phone):
     response_pizzapan = requests.post(url='http://pizzapan.ru/send2.php', headers=headers)
     print(response_pizzapan)
 
+# уебищное форматирование номера, fix me
 def dostaevsky():
     headers = {
         'phone':'+7 999 233-23-43'
@@ -45,6 +48,7 @@ def pizzasushiwok(phone):
     response_pizzasushiwok = requests.post(url='https://pizzasushiwok.ru/', headers=headers)
     print(response_pizzasushiwok)
 
+# уебищное форматирование номера, fix me
 def ipizza():
     headers = {
         'name':'%D0%92%D0%B0%D1%81%D0%B8%D0%BB%D0%B8%D0%B9',
@@ -52,9 +56,16 @@ def ipizza():
     }
     response_ipizza = requests.post(url='https://ipizza.ru/xml/api/callback/', headers=headers)
     print(response_ipizza)
+
+# тут мне было впадлу сделать параметр, ес чо надо только номер подставить
+def okeansushi(phone):
+    response_okeansushi = requests.post(url='https://okeansushi.ru/includes/contact.php?call_mail=1&ajax=1&name=%D0%93%D0%BE%D1%80%D0%B8%D0%B3%D0%BE%D1%80%D0%B8%D0%B5%D0%B9&phone=8+(999)+234-44-44&call_time=1&call_time_dt%5B%5D=21&call_time_dt%5B%5D=45&pravila2=on')
+    print(response_okeansushi)
+
+
 # pizzalarenzo(phone)
 # tarelochka(phone)
 # pizzapan(phone)
 # dostaevsky()
 # pizzasushiwok(phone)
-ipizza()
+# ipizza()
