@@ -175,8 +175,8 @@ def generate_email():
 #         taxinonstop(phone)
 #         sleep(180)
 
-def run (phone):
-    for i in range(5):
+def run(phone, n):
+    for i in range(n):
         kfc(phone)
         for j in range(3):
             bk(phone)
@@ -184,10 +184,3 @@ def run (phone):
                 sunlight(phone)
                 taxinonstop(phone)
                 sleep(6)
-            
-    
-        
-
-
-
-        
