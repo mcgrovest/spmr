@@ -1,6 +1,6 @@
+from time import sleep
 from random import randint
 import requests
-phone = '9992223456'
 
 
 def pizzalarenzo(phone):
@@ -101,7 +101,7 @@ def olimpbet(phone):
     response_olimpbet = requests.post(url='https://www.olimp.bet/api/smsregistration',
                                       json={"lang_id": "0", "platforma": "SITE_CUPIS",
                                             "cash": "3", "telnum": olmpphn,
-                                            "email": "***@gmail.com",
+                                            "email": "username0002@gmail.com",
                                             "tag": "c4bee55d6bb50e85287bffe8fd0113d5"})
     print(response_olimpbet)
 
@@ -129,7 +129,7 @@ def taxinonstop(phone):
     print(response_taxinonstop)
 
 
-def generate_email(phone):
+def generate_email():
     """
     Generate e-mail
     :return: string email
@@ -155,3 +155,19 @@ def generate_email(phone):
 #  kfc(phone)
 #  taxinonstop(phone)
 #  test commit
+def run(phone):
+    print(phone)
+    pizzalarenzo(phone)
+    tarelochka(phone)
+    pizzapan(phone)
+    dostaevsky(phone)
+    pizzasushiwok(phone)
+    ipizza(phone)
+
+    for i in range(5):
+        sunlight(phone)
+        bk(phone)
+        # olimpbet(phone)
+        kfc(phone)
+        taxinonstop(phone)
+        sleep(180)

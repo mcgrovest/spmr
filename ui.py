@@ -1,7 +1,7 @@
 import sys
-from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton, QLineEdit, QCheckBox
+from main import run
+from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QLineEdit, QCheckBox
 from PyQt5.QtCore import pyqtSlot
-from main import phone
 from PyQt5 import QtCore
 
 
@@ -10,6 +10,7 @@ class MainInterface(QMainWindow):
     def __init__(self):
         super().__init__()
         self.init_ui()
+        self.number = None
 
     def init_ui(self):
         self.setWindowFlags(self.windowFlags() & ~QtCore.Qt.WindowMinimizeButtonHint)
@@ -45,12 +46,12 @@ class MainInterface(QMainWindow):
         while len(number) != 10:
             number = number[1:]
 
-        global phone
-        phone = number
+        return number
 
     @pyqtSlot()
     def on_push_button(self):
-        self.get_number()
+        self.number = self.get_number()
+        run(self.number)
 
 
 if __name__ == '__main__':
