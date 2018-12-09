@@ -1,6 +1,7 @@
 import sys
 from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton, QLineEdit, QCheckBox
 from PyQt5.QtCore import pyqtSlot
+from main import phone
 from PyQt5 import QtCore
 
 
@@ -21,7 +22,7 @@ class MainInterface(QMainWindow):
         self.phonenumber_line.setPlaceholderText("Phone number")
         self.button_input = QPushButton('Run', self)
         self.button_input.setGeometry(220, 30, 100, 20)
-        # self.button_input.clicked.connect()
+        self.button_input.clicked.connect(self.on_push_button)
 
         self.checkbox_sms = QCheckBox('SMS', self)
         self.checkbox_sms.setGeometry(10, 60, 200, 20)
@@ -31,6 +32,25 @@ class MainInterface(QMainWindow):
         self.checkbox_calls.setChecked(True)
 
         self.show()
+
+    def get_number(self):
+        """
+        Get correct number
+        :return: string number
+        """
+        number = self.phonenumber_line.text()
+        if len(number) < 10:
+            return ''
+
+        while len(number) != 10:
+            number = number[1:]
+
+        global phone
+        phone = number
+
+    @pyqtSlot()
+    def on_push_button(self):
+        self.get_number()
 
 
 if __name__ == '__main__':
