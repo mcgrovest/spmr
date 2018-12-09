@@ -9,3 +9,4 @@ sunlight : https://sunlight.net/ #/profile/login/
 bk : https://burgerking.ru/ #/delivery
 olimpbet : https://www.olimp.bet/
 kfc : https://kfc.ru/ #/login
+taxinonstop : https://taxinonstop.ru/
