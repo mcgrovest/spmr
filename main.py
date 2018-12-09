@@ -54,6 +54,7 @@ def ipizza():
         'name':'%D0%92%D0%B0%D1%81%D0%B8%D0%BB%D0%B8%D0%B9',
         'phone': '%2B7+(999)+234-56-78'
     }
+    # говно с ногтями
     response_ipizza = requests.post(url='https://ipizza.ru/xml/api/callback/', headers=headers)
     print(response_ipizza)
 
