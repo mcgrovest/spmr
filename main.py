@@ -165,36 +165,6 @@ def generate_email():
     return name + '@' + services[randint(0, len(services) - 1)]
 
 
-#  pizzalarenzo(phone)
-#  tarelochka(phone)
-#  pizzapan(phone)
-#  dostaevsky(phone)
-#  pizzasushiwok(phone)
-#  ipizza(phone)
-#  sunlight(phone)
-#  bk(phone)
-#  olimpbet(phone)
-#  kfc(phone)
-#  taxinonstop(phone)
-#  test commit
-
-# def run(phone):
-#     print(phone)
-#     pizzalarenzo(phone)
-#     tarelochka(phone)
-#     pizzapan(phone)
-#     dostaevsky(phone)
-#     pizzasushiwok(phone)
-#     ipizza(phone)
-
-#     for i in range(5):
-#         sunlight(phone)
-#         bk(phone)
-#         # olimpbet(phone)
-#         kfc(phone)
-#         taxinonstop(phone)
-#         sleep(180)
-
 def run(phone, n):
     for i in range(n):
         kfc(phone)
