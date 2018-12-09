@@ -129,6 +129,8 @@ def taxinonstop(phone):
     print(response_taxinonstop)
 
 
+
+
 def generate_email():
     """
     Generate e-mail
@@ -155,19 +157,37 @@ def generate_email():
 #  kfc(phone)
 #  taxinonstop(phone)
 #  test commit
-def run(phone):
-    print(phone)
-    pizzalarenzo(phone)
-    tarelochka(phone)
-    pizzapan(phone)
-    dostaevsky(phone)
-    pizzasushiwok(phone)
-    ipizza(phone)
 
+# def run(phone):
+#     print(phone)
+#     pizzalarenzo(phone)
+#     tarelochka(phone)
+#     pizzapan(phone)
+#     dostaevsky(phone)
+#     pizzasushiwok(phone)
+#     ipizza(phone)
+
+#     for i in range(5):
+#         sunlight(phone)
+#         bk(phone)
+#         # olimpbet(phone)
+#         kfc(phone)
+#         taxinonstop(phone)
+#         sleep(180)
+
+def run (phone):
     for i in range(5):
-        sunlight(phone)
-        bk(phone)
-        # olimpbet(phone)
         kfc(phone)
-        taxinonstop(phone)
-        sleep(180)
+        for j in range(3):
+            bk(phone)
+            for k in range(10):
+                sunlight(phone)
+                taxinonstop(phone)
+                sleep(6)
+            
+    
+        
+
+
+
+        
