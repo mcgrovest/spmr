@@ -1,3 +1,4 @@
+from random import randint
 import requests
 phone = '89992223456'
 
@@ -114,6 +115,20 @@ def taxinonstop(phone):
                                          json={"cmd": "register", "phone": phone,
                                                "taxi_city": "tmn"})
     print(response_taxinonstop)
+
+
+def generate_email():
+    """
+    Generate e-mail
+    :return: string email
+    """
+    services = ['gmail.com', 'yandex.ru', 'outlook.com']
+    name_length = randint(6, 12)
+    name = ''
+    for i in range(name_length):
+        name += chr(randint(97, 122))
+
+    return name + '@' + services[randint(0, len(services)) - 1]
 
 
 #  pizzalarenzo(phone)
