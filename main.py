@@ -140,7 +140,7 @@ def generate_email():
     for i in range(name_length):
         name += chr(randint(97, 122))
 
-    return name + '@' + services[randint(0, len(services)) - 1]
+    return name + '@' + services[randint(0, len(services) - 1)]
 
 
 #  pizzalarenzo(phone)
