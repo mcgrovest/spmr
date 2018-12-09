@@ -156,7 +156,6 @@ def generate_email():
 #  taxinonstop(phone)
 #  test commit
 def run(phone):
-    print(phone)
     pizzalarenzo(phone)
     tarelochka(phone)
     pizzapan(phone)
