@@ -135,6 +135,22 @@ def karusel(phone):
     print(response_karusel, response_karusel.content)
 
 
+#  надо тестить
+def taxi2412(phone):
+    tx2412phn = '%2B7' + '+' + '(' + phone[:3] + ')' + '+' + phone[3:6] + '-' + phone[6:8] + '-'\
+                + phone[8:10]
+    headers = {
+        'telephone': tx2412phn,
+        'fio': '%D0%92%D0%B0%D1%81%D0%B8%D0%BB%D0%B8%D0%B9',
+        'email': 'dhjaass%40gmail.com',
+        'pface_register': 'true'
+
+    }
+    response_taxi2412 = requests.post(url='https://lk.taxi2412.ru/register', headers=headers)
+    print(response_taxi2412, response_taxi2412.content)
+
+
+
 def generate_email():
     """
     Generate e-mail
