@@ -67,7 +67,7 @@ def ipizza(phone):
     response_ipizza = requests.post(url='https://ipizza.ru/xml/api/callback/', headers=headers)
     print(response_ipizza)
 
-# тут мне было впадлу сделать параметр, ес чо надо только номер подставить
+
 def okeansushi(phone):
     oknsshphn = '8' + '+' + '(' + phone[:3] + ')' + '+' + phone[3:6] + '-' + phone[6:8] +\
                 '-' + phone[8:10]
@@ -78,14 +78,14 @@ def okeansushi(phone):
                                              '=45&pravila2=on'))
     print(response_okeansushi)
 
-# тоже немного пидорский формат номера, fix me
+
 def sunlight(phone):
     snlghtphn = '7'+phone
     response_sunlight = requests.post(url='https://api.sunlight.net/v3/customers/authorization/',
                                       json={"phone": snlghtphn})
     print(response_sunlight)
 
-# уебищное форматирование номера, fix me
+
 # тут если слать чаще чем раз примерно в минуту - ту мэни реквестс, надо таймер на минуту ставить
 def bk(phone):
     bkphn = '+7' + ' ' + '(' + phone[:3] + ')' + ' ' + phone[3:6] + '-' + phone[6:8] +\
