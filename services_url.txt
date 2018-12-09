@@ -10,3 +10,5 @@ bk : https://burgerking.ru/ #/delivery
 olimpbet : https://www.olimp.bet/
 kfc : https://kfc.ru/ #/login
 taxinonstop : https://taxinonstop.ru/
+karusel : https://karusel.ru/
+taxi2412 : https://lk.taxi2412.ru/register
