@@ -134,6 +134,13 @@ def karusel(phone):
                                      json={"phone": krslphn})
     print(response_karusel, response_karusel.content)
 
+def karusel(phone):
+    krslphn = '7'+phone
+    response_karusel = requests.post(url='https://app.karusel.ru/api/v1/phone/',
+                                     json={"phone": krslphn})
+    print(response_karusel, response_karusel.content)
+
+
 def generate_email():
     """
     Generate e-mail
