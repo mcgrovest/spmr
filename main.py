@@ -128,6 +128,12 @@ def taxinonstop(phone):
                                                "taxi_city": "tmn"})
     print(response_taxinonstop)
 
+def karusel(phone):
+    krslphn = '7'+phone
+    response_karusel = requests.post(url='https://app.karusel.ru/api/v1/phone/', 
+                                     json={"phone": krslphn})
+    print(response_karusel)
+    print(response_karusel.text)
 
 
 
@@ -180,6 +186,7 @@ def run (phone):
         kfc(phone)
         for j in range(3):
             bk(phone)
+            karusel(phone)
             for k in range(10):
                 sunlight(phone)
                 taxinonstop(phone)
