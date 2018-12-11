@@ -198,9 +198,9 @@ def generate_email():
 
 
 def run(phone, n):
+    taxi2412regist(phone)
     for i in range(n): #  timeout 180
         kfc(phone)
-        taxi2412regist(phone)
         ostin(phone)
         funday(phone)
         for j in range(3): #  timeout 60
