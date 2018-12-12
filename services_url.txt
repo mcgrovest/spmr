@@ -18,4 +18,7 @@ novextrade : http://www.novex-trade.ru/join.html
 atb : https://www.atb.su/
 lenta : https://lk.lenta.com/authentication/login/new-card
 beelinecredit : https://credit-beeline.ru/
-
+youla : https://youla.ru/
+befree : https://www.befree.ru/
+mtsbank : https://www.mtsbank.ru/chastnim-licam/karti/credit-card-weekend/#mts2-section-form__form
+otkr : https://www.open.ru/cards/opencard#anketa

