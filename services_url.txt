@@ -16,3 +16,6 @@ funday : http://fundayshop.com/
 sela : https://www.sela.ru/bonus/signup/
 novextrade : http://www.novex-trade.ru/join.html
 atb : https://www.atb.su/
+lenta : https://lk.lenta.com/authentication/login/new-card
+beelinecredit : https://credit-beeline.ru/
+
