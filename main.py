@@ -119,10 +119,11 @@ def karusel(phone):
 def taxi2412regist(phone):
     tx2412phn = '+7' + ' ' + phone[:3] + ' ' + phone[3:6] + '-' + phone[6:8] +\
                 '-' + phone[8:10]
+    mail = generate_email()
     data = {
         'telephone': tx2412phn,
         'fio': 'Иван Иванов',
-        'email': 'dassass@gmail.com',
+        'email': mail,
         'pface_register': 'true'
 
     }
@@ -157,13 +158,14 @@ def funday(phone):
 def sela(phone):
     slphn = '+7' + ' ' + '(' + phone[:3] + ')' + ' ' + phone[3:6] + '-' + phone[6:8] +\
             '-' + phone[8:10]
+    mail = generate_email()
     data = {
         'LastName': 'Петров',
         'FirstName': 'Петр',
         'BirthDate': '10.02.1978',
         'GenderCode': '1',
         'MobilePhone': slphn,
-        'EmailAddress': 'ashdbb@gmail.com',
+        'EmailAddress': mail,
         'agree': '1'
     }
     response_sela = requests.post(url='https://www.sela.ru/sela/bonus/signup/', data=data)
