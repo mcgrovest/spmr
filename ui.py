@@ -1,6 +1,7 @@
 import sys
 from main import run
-from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QLineEdit, QCheckBox, QMessageBox
+from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QLineEdit, QCheckBox,\
+    QMessageBox
 from PyQt5.QtCore import pyqtSlot
 from PyQt5 import QtCore
 
