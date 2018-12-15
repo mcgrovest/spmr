@@ -33,12 +33,12 @@ class MainInterface(QMainWindow):
         self.button_input.setGeometry(220, 30, 100, 20)
         self.button_input.clicked.connect(self.on_push_button)
 
-        self.checkbox_sms = QCheckBox('SMS', self)
-        self.checkbox_sms.setGeometry(10, 60, 200, 20)
-        self.checkbox_sms.setChecked(True)
-        self.checkbox_calls = QCheckBox('CALLS', self)
-        self.checkbox_calls.setGeometry(55, 60, 200, 20)
-        self.checkbox_calls.setChecked(True)
+        # self.checkbox_sms = QCheckBox('SMS', self)
+        # self.checkbox_sms.setGeometry(10, 60, 200, 20)
+        # self.checkbox_sms.setChecked(True)
+        # self.checkbox_calls = QCheckBox('CALLS', self)
+        # self.checkbox_calls.setGeometry(55, 60, 200, 20)
+        # self.checkbox_calls.setChecked(True)
 
         self.show()
 
